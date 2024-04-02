@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import ProtectedRoutes from "./middlewares/protectedRoutes";
 import HomePage from "./pages/HomePage";
+import Success from "./pages/Success";
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
+        <Route path="/success" element={<Success />} />
         <Route element={<ProtectedRoutes />} >
           <Route path="/home" element={<HomePage />} />
         </Route>

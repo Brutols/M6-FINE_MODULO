@@ -26,6 +26,10 @@ const LoginPage = () => {
     }
   }
 
+  const handleGitHubLogin = () => {
+    window.location.href = "http://localhost:3030/auth/github"
+  }
+
   return (
     <div className={styles.container}>
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -43,6 +47,7 @@ const LoginPage = () => {
         />
         <button type="submit">Submit</button>
       </form>
+      <button type="button" onClick={handleGitHubLogin}>GitHub Login</button>
     </div>
   );
 };
