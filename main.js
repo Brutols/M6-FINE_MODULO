@@ -6,6 +6,8 @@ require("dotenv").config();
 const userRoute = require("./routes/userRoute");
 const loginRoute = require("./routes/loginRoute");
 const gitHubRoute = require("./routes/gitHub");
+const travelRoute = require("./routes/travelRoute");
+const ratingRoute = require("./routes/ratingRoute");
 
 const PORT = 3030;
 const app = express();
@@ -16,6 +18,8 @@ app.use(express.json());
 app.use("/", userRoute);
 app.use("/", loginRoute);
 app.use("/", gitHubRoute);
+app.use("/", travelRoute);
+app.use("/", ratingRoute);
 
 mongoose.connect(process.env.MONGODB_URL);
 
