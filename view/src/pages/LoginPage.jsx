@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./loginPage.module.css";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"
+import axios from "axios";
 
 const LoginPage = () => {
   const [formData, setFormData] = useState({});
@@ -17,37 +17,60 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await axios.post("http://localhost:3030/login", formData)
-    if (res.data.token) {
-        localStorage.setItem("auth", JSON.stringify(res.data.token))
-        setTimeout(() => {
-            navigate("/home")
-        }, 1500)
+
+    if (!formData.email || !formData.password) {
+      alert("insert email and password")
+      return
     }
-  }
+
+    const res = await axios.post("http://localhost:3030/login", formData)
+    .catch(function (error) {
+      if (error.response) {
+        alert("response error", error.message)
+      } else if (error.request) {
+        alert("wrong email or password")
+      } else {
+        alert('Error', error.message);
+      }
+    })
+
+    if (res.data.token) {
+      localStorage.setItem("auth", JSON.stringify(res.data.token));
+      setTimeout(() => {
+        navigate("/home");
+      }, 1500);
+    }
+  };
 
   const handleGitHubLogin = () => {
-    window.location.href = "http://localhost:3030/auth/github"
-  }
+    window.location.href = "http://localhost:3030/auth/github";
+  };
 
   return (
     <div className={styles.container}>
-      <form className={styles.form} onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="email"
-          placeholder="e-mail"
-          onChange={handleChange}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          onChange={handleChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
-      <button type="button" onClick={handleGitHubLogin}>GitHub Login</button>
+      <div className={styles.loginWrapper} >
+        <h3 className={styles.loginTitle} >Login</h3>
+        <form className={styles.form} onSubmit={handleSubmit}>
+          <input
+            className={styles.textInput}
+            type="email"
+            name="email"
+            placeholder="e-mail"
+            onChange={handleChange}
+          />
+          <input
+          className={styles.textInput}
+            type="password"
+            name="password"
+            placeholder="password"
+            onChange={handleChange}
+          />
+          <button className={styles.submitBtn} type="submit">Login</button>
+        </form>
+        <button className={styles.gitHubBtn} type="button" onClick={handleGitHubLogin}>
+          Login with GitHub
+        </button>
+      </div>
     </div>
   );
 };
