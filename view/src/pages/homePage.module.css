@@ -4,3 +4,15 @@
     gap: 20px;
     padding: 20px;
 }
+
+@media screen and (max-width: 972px) {
+    .cardWrapper {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 657px) {
+    .cardWrapper {
+        grid-template-columns: 1fr;
+    }
+}

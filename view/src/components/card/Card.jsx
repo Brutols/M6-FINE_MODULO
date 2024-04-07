@@ -6,7 +6,7 @@ const Card = ({img, location, description, price}) => {
     <div className={styles.travelCard} >
         <img src={img} alt="" />
         <div>
-            <h3>{location}</h3>
+            <h3 className={styles.truncateTitle} >{location}</h3>
             <p className={styles.truncate} >{description}</p>
             <p>{price}</p>
         </div>
