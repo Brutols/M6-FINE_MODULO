@@ -4,6 +4,11 @@ import { Link, useNavigate } from 'react-router-dom'
 
 const Success = () => {
   const navigate = useNavigate()
+
+  const params = new URLSearchParams(window.location.search)
+  const token = params.get("token")
+
+  localStorage.setItem("auth", JSON.stringify(token))
   
   const navigateHome = () => {
     navigate("/home")

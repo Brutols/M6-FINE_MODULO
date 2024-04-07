@@ -1,6 +1,6 @@
 const express = require("express");
 const gitHub = express.Router();
-const strategy = require("passport-github2").Strategy;
+const strategy = require("passport-github").Strategy;
 const passport = require("passport");
 require("dotenv").config();
 const session = require("express-session");
@@ -34,24 +34,22 @@ passport.use(
         callbackURL: process.env.GITHUB_CALLBACK_URL,
         proxy: true,
         scope: ["user:email"]
-    }, async (accessToken, refreshToken, profile, done) => {
+    }, async (accessToken, refreshToken, profile, cb) => {
         const { _json } = profile
         const name = _json.name.split(" ")
         const user = await userModel.findOne({email: _json.email})
-        console.log(user);
         
         if (!user) {
             const newUser = new userModel({
                 firstName: name[0],
                 lastName: name[1],
-                email: _json.email || "gggg@gmail.com",
+                email: _json.email || `${firstName}.${lastName}@null.com`,
                 password: crypto.randomBytes(10).toString("hex")
             })
-            console.log(newUser);
             await newUser.save()
         }
 
-        return done(null, profile)
+        return cb(null, profile)
     })
 )
 
