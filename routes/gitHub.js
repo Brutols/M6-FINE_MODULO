@@ -68,7 +68,7 @@ gitHub.get("/auth/github/callback", passport.authenticate("github", {failureRedi
 })
 
 gitHub.get("/success", (req, res) => {
-    res.redirect("/home")
+    res.redirect(`${process.env.BE_BASE_URL}/home`)
 })
 
 module.exports = gitHub;
