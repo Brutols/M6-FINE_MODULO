@@ -8,7 +8,7 @@ const HomePage = () => {
 
   const getTravels = async () => {
     try {
-      const res = await axios.get("http://localhost:3030/travels")
+      const res = await axios.get(`${process.env.REACT_APP_BASE_URL}/travels`)
       setTravels(res.data.travels)
     } catch (error) {
       console.log(error.message)

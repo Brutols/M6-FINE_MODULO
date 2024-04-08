@@ -23,7 +23,7 @@ const LoginPage = () => {
       return
     }
 
-    const res = await axios.post("http://localhost:3030/login", formData)
+    const res = await axios.post(`${process.env.REACT_APP_BASE_URL}/login`, formData)
     .catch(function (error) {
       if (error.response) {
         alert("response error", error.message)
@@ -43,7 +43,7 @@ const LoginPage = () => {
   };
 
   const handleGitHubLogin = () => {
-    window.location.href = "http://localhost:3030/auth/github";
+    window.location.href = `${process.env.REACT_APP_BASE_URL}/auth/github`;
   };
 
   return (
