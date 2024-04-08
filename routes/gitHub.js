@@ -3,7 +3,7 @@ const gitHub = express.Router();
 const strategy = require("passport-github").Strategy;
 const passport = require("passport");
 require("dotenv").config();
-const session = require("cookie-session");
+const session = require("express-session");
 const jwt = require("jsonwebtoken");
 const userModel = require("../models/userModel")
 const crypto = require("crypto")
