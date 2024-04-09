@@ -55,7 +55,7 @@ passport.use(
 
 gitHub.get("/auth/github", passport.authenticate("github", {scope: ["user:email"]}), (req, res) => {
     const user = req.user
-    const redirectUrl = `${process.env.BE_BASE_URL}/success?user=${JSON.stringify(user)}`
+    const redirectUrl = `https://incredible-crisp-7a8a2a.netlify.app/success?user=${JSON.stringify(user)}`
     res.redirect(redirectUrl)
 })
 
@@ -63,7 +63,7 @@ gitHub.get("/auth/github/callback", passport.authenticate("github", {failureRedi
     const user = req.user
     const token = jwt.sign(user, process.env.SECRET_KEY)
 
-    const redirectUrl = `${process.env.BE_BASE_URL}/success?token=${token}`
+    const redirectUrl = `https://incredible-crisp-7a8a2a.netlify.app/success?token=${token}`
     res.redirect(redirectUrl)
 })
 
