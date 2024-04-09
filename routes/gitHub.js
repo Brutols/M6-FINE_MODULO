@@ -68,7 +68,7 @@ gitHub.get("/auth/github/callback", passport.authenticate("github", {failureRedi
 })
 
 gitHub.get("/success", (req, res) => {
-    res.redirect(`https://m6-fine-modulo.onrender.com/home`)
+    res.redirect(`https://incredible-crisp-7a8a2a.netlify.app/home`)
 })
 
 module.exports = gitHub;
